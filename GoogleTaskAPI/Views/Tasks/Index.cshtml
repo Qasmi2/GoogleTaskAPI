@@ -1,0 +1,121 @@
+﻿@{
+    Layout = null;
+}
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Single page web app using Angularjs</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-animate.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    @Scripts.Render("~/bundles/scriptAngular")
+
+</head>
+<body ng-app="GoogleTasks">
+    <div class="col-lg-12 center" ng-controller="mainController">
+
+
+
+
+
+        <div class="container">
+
+            <div id="mainHeading" class="col-lg-8 col-md-8 col-sm-8 col-xs-12 text-center" ng-repeat="list in tasklist">
+                <h1>{{list.title}}</h1>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <h1>
+                    <button class="btn btn-primary pull-right" ng-click="delete_All_Task()">Delete All Tasks</button>
+                </h1>
+            </div>
+
+        </div>
+        <hr>
+
+        <div class="container">
+
+            <div class="flex-row row text-center">
+
+
+
+                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 d-flex pb-3" ng-hide="disabled">
+                    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12"></div>
+
+                    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                        <div class="card card-block">
+
+
+                            <button class=" btn btn-info btn-lg glyphicon glyphicon-plus" style="vertical-align:middle" ng-click="disabled=!disabled"></button>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12"></div>
+
+                </div>
+
+
+                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 d-flex pb-3" ng-hide="!disabled">
+                    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12"></div>
+
+                    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                        <div class="card card-block">
+                            <form>
+                                <label for="title">Title</label>
+                                <input type="text" name="title" id="title" class="form-control" ng-model="title">
+
+                                <label for="title">Note</label>
+                                <input type="text" name="note" id="note" class="form-control" ng-model="note">
+
+                                <button class="btn btn-primary" id="save" ng-click="insert_task()">Insert</button>
+
+                                <button class="btn btn-primary" id="cancel" ng-click="disabled=!disabled">Cancel</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12"></div>
+
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+            <hr>
+            {{message}}
+
+
+            <div class="flex-row row text-center">
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12 d-flex pb-3" ng-repeat="task in allTasks">
+
+                    <div class="card card-block">
+
+                        <h2>{{task.title}}</h2>
+                        <p>{{task.note}}</p>
+                        <p>{{task.duedate}}</p>
+                        <button class="btn btn-primary" ng-click="delete_Task()">Delete</button>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</body>
+</html>
+
